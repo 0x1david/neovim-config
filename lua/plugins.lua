@@ -30,8 +30,11 @@ require('packer').startup(function()
 	  requires = {
 		  'nvim-lua/plenary.nvim' 
 	  } }
-  use "EdenEast/nightfox.nvim"
-  use 'itchyny/lightline.vim' 
+  use "sainnhe/sonokai"
+  use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+       }
   use {
 	  'lewis6991/gitsigns.nvim',
 	  requires = {
@@ -52,3 +55,8 @@ require('packer').startup(function()
 }
 end)
 
+require'lualine'.setup {
+        options = {
+        theme = 'sonokai'
+          }
+        }

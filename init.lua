@@ -25,9 +25,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Color Scheme
-vim.cmd("colorscheme carbonfox")
-vim.g.lightline = { colorscheme = "carbonfox" }
-
--- Y yank until the end of line  (note: this is now a default on master)
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
-
+vim.opt.termguicolors = true
+vim.g.sonokai_style = 'atlantis'
+vim.g.sonokai_better_performance = 1 
+vim.cmd("colorscheme sonokai")

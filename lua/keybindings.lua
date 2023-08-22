@@ -1,5 +1,5 @@
 ----------------------------------------------------------
--- Define keymaps of Neovim and installed plugins.
+-- Map Function 
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs, opts)
@@ -11,12 +11,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -----------------------------------------------------------
--- Neovim shortcuts
+-- Neovim 
 -----------------------------------------------------------
--- Change leader to a comma
-vim.g.mapleader = ','
-
-
 -- Leader
 vim.api.nvim_set_keymap('', '<Leader>nn', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
@@ -27,7 +23,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = t
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 
--- Movement in insert mode
+-- Movement in Insert Mode
 map('i', '<C-k>', '<up>')
 map('i', '<C-j>', '<down>')
 map('i', '<C-h>', '<left>')
@@ -39,10 +35,12 @@ map("", "<S-a>", "^") -- Jump to the beginning of a line
 map("", "<S-w>", "w") -- Jump one word forth
 map("", "<S-b>", "b") -- Jump one word back
 
-
+-- Text Editing
 map("", "<S-d>", "dw") -- Delete Word
 map("", "<S-x>", "x") -- Delete Letter
 map("", "r", "<C-r>") -- Redo Changes
 map("", "<S-q><S-l>", "d$") -- Delete to end of line
+map("", "<S-q>l", "d$")
 map("", "<S-q><S-h>", "d0") -- Delete to start of line
+map("", "<S-q>h", "d0")
 
