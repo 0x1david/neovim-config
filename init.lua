@@ -17,6 +17,9 @@ vim.wo.relativenumber = true
 -- Mouse Mode
 vim.o.mouse ='a'
 
+-- Yank to System Clipboard
+vim.opt.clipboard = "unnamedplus"
+
 -- Save Undo History
 vim.opt.undofile = true
 
