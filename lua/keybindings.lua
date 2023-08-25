@@ -31,13 +31,9 @@ map('i', '<C-l>', '<right>')
 
 -- Movement in Normal Mode
 map("", "<S-e>", "<End>") -- Jump to the end of Line
-map("", "<S-a>", "^") -- Jump to the beginning of a line
-map("", "<S-w>", "w") -- Jump one word forth
-map("", "<S-b>", "b") -- Jump one word back
+map("", "a", "^") -- Jump to the beginning of a line
 
 -- Text Editing
-map("", "<S-d>", "dw") -- Delete Word
-map("", "<S-x>", "x") -- Delete Letter
 map("", "r", "<C-r>") -- Redo Changes
 map("", "<S-q><S-l>", "d$") -- Delete to end of line
 map("", "<S-q>l", "d$")
