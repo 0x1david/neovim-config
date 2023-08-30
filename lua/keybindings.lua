@@ -40,3 +40,14 @@ map("", "<S-q>l", "d$")
 map("", "<S-q><S-h>", "d0") -- Delete to start of line
 map("", "<S-q>h", "d0")
 
+-- Unbind Arrow Keys
+map("i", "<up>", "<nop>")
+map("i", "<down>", "<nop>")
+map("i", "<left>", "<nop>")
+map("i", "<right>", "<nop>")
+
+map("", "<up>", "<nop>")
+map("", "<down>", "<nop>")
+map("", "<left>", "<nop>")
+map("", "<right>", "<nop>")
+
