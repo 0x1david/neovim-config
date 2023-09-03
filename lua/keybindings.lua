@@ -40,6 +40,10 @@ map("", "<S-q>l", "d$")
 map("", "<S-q><S-h>", "d0") -- Delete to start of line
 map("", "<S-q>h", "d0")
 
+-- Add centering after half a page jumping
+map("", "<C-d>", "<C-d>zz")
+map("", "<C-u>", "<C-u>zz")
+
 -- Unbind Arrow Keys
 map("i", "<up>", "<nop>")
 map("i", "<down>", "<nop>")
@@ -50,4 +54,9 @@ map("", "<up>", "<nop>")
 map("", "<down>", "<nop>")
 map("", "<left>", "<nop>")
 map("", "<right>", "<nop>")
+
+-- Add centering after half a page jumping
+map("", "<C-d>", "<C-d>zz")
+map("", "<C-u>", "<C-u>zz")
+
 
