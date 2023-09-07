@@ -19,12 +19,12 @@ require('mini.pairs').setup({
              neigh_pattern = '[^\\].',
              register = {cr = false}
          },
-         ["'"] = {
-             action = 'closeopen',
-             pair = "''",
-             neigh_pattern = '[^%a\\].',
-             register = {cr = false}
-         },
+         ["'"] = false -- {
+         --     action = 'closeopen',
+         --     pair = "''",
+         --     neigh_pattern = '[^%a\\].',
+         --     register = {cr = false}
+         ,
          ['`'] = {
              action = 'closeopen',
              pair = '``',
