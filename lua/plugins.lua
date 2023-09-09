@@ -50,13 +50,17 @@ require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
   use {
-	"windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
+      'echasnovski/mini.pairs',
 }
+  -- use {
+	-- "windwp/nvim-autopairs",
+  --   config = function() require("nvim-autopairs").setup {} end
+-- }
 end)
 
-require'lualine'.setup {
+require('lualine').setup {
         options = {
         theme = 'sonokai'
           }
         }
+--require('mini.nvim').setup()
