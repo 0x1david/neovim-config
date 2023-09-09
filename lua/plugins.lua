@@ -1,66 +1,66 @@
 ----------------------------------------------------------------------------------------
--- PACKER
-----------------------------------------------------------------------------------------
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+-- LAZY 
+---------------------------------------------------------------------------------------
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.api.nvim_exec(
-  [[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]],
-  false
-)
+-- Leader
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 ----------------------------------------------------------------------------------------
 -- PLUGINS
 ----------------------------------------------------------------------------------------
-local use = require('packer').use
-require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-commentary' 
-  use 'tpope/vim-surround' 
-  use {
-	  'nvim-telescope/telescope.nvim',
-	  requires = {
-		  'nvim-lua/plenary.nvim' 
-	  } }
-  use "sainnhe/sonokai"
-  use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-       }
-  use {
-	  'lewis6991/gitsigns.nvim',
-	  requires = {
-		  'nvim-lua/plenary.nvim' } }
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-  use 'neovim/nvim-lspconfig' 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
-  use {
-      'echasnovski/mini.pairs',
-}
-  -- use {
-	-- "windwp/nvim-autopairs",
-  --   config = function() require("nvim-autopairs").setup {} end
--- }
-end)
+local plugins = {
+  'wbthomason/packer.nvim',
+  'tpope/vim-fugitive',
+  'tpope/vim-commentary',
+  'tpope/vim-surround',
+  { 'nvim-telescope/telescope.nvim', dependencies = {'nvim-lua/plenary.nvim' }},
+  "sainnhe/sonokai",
+  { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true }},
+  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' }},
+  'nvim-treesitter/nvim-treesitter-textobjects',
+  'hrsh7th/cmp-nvim-lsp',
+  'saadparwaiz1/cmp_luasnip',
+  'L3MON4D3/LuaSnip',
+  'echasnovski/mini.pairs',
+ {
+    "hrsh7th/nvim-cmp",
+    -- event = 'InsertEnter',
+    event = 'VeryLazy',
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
+  },
 
+  {
+    "neovim/nvim-lspconfig",
+    event = { 'BufRead', 'BufNewFile' },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
+    build = ":TSUpdate",
+  },
+}
+
+-- Mods
+
+require("lazy").setup(plugins, {})
 require('lualine').setup {
         options = {
         theme = 'sonokai'
           }
         }
---require('mini.nvim').setup()
+
