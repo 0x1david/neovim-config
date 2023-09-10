@@ -34,6 +34,11 @@ local plugins = {
   'theprimeagen/harpoon',
   'mbbill/undotree',
   {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true
+    },
+  {
     'tpope/vim-commentary',
     event = "VeryLazy" 
     },
