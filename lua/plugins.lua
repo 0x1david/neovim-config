@@ -33,6 +33,10 @@ local plugins = {
   'echasnovski/mini.pairs',
   'theprimeagen/harpoon',
   'mbbill/undotree',
+  {  
+    'simrat39/rust-tools.nvim',
+    event = "VeryLazy"
+    },
   {
     'akinsho/toggleterm.nvim',
     version = "*",

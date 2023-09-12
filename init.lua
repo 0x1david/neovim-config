@@ -12,6 +12,8 @@ require("plugins.pairs")
 require("plugins.harpoon")
 require("plugins.undotree")
 require("plugins.toggleterm")
+require("plugins.rusttools")
+
 -- Indent Size
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
