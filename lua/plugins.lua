@@ -30,7 +30,7 @@ local plugins = {
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',
   'L3MON4D3/LuaSnip',
-  'echasnovski/mini.pairs',
+  'windwp/nvim-autopairs',
   'theprimeagen/harpoon',
   'mbbill/undotree',
   {  
