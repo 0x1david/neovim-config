@@ -37,11 +37,13 @@ local plugins = {
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
     },
+
   {
     'akinsho/toggleterm.nvim',
     version = "*",
     config = true
     },
+    
   {
     'tpope/vim-commentary',
     event = "VeryLazy" 
@@ -49,7 +51,7 @@ local plugins = {
 
   { 
     'nvim-telescope/telescope.nvim',
-    dependencies = {'nvim-lua/plenary.nvim' 
+    dependencies = {'nvim-lua/plenary.nvim'
         }
     },
 
@@ -87,6 +89,27 @@ local plugins = {
     event = "VeryLazy",
     build = ":TSUpdate",
   },
+
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+        { "s", mode = { "n", "o", "x" }, function() require("flash").jump(
+            {
+                search = {
+                    mode = function(str)
+                        return "\\<" .. str
+                    end,
+                },
+            }
+        ) end, desc = "Flash" },
+        -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        -- { "<c-f>", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+        -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        -- { "<c-sss>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+     },
+   }
 }
 
 -- Lazy Initialize
