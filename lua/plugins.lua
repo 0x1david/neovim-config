@@ -29,13 +29,21 @@ local plugins = {
   'nvim-treesitter/nvim-treesitter-textobjects',
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',
-  'L3MON4D3/LuaSnip',
   'windwp/nvim-autopairs',
+  'L3MON4D3/LuaSnip',
   'theprimeagen/harpoon',
   'mbbill/undotree',
   {  
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
+    },
+
+  {
+    'altermo/ultimate-autopair.nvim',
+    event={'InsertEnter','CmdlineEnter'},
+    branch='v0.6',
+    opts={
+     },
     },
 
   {
@@ -96,13 +104,6 @@ local plugins = {
     opts = {},
     keys = {
         { "s", mode = { "n", "o", "x" }, function() require("flash").jump(
-            {
-                search = {
-                    mode = function(str)
-                        return "\\<" .. str
-                    end,
-                },
-            }
         ) end, desc = "Flash" },
         -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
         -- { "<c-f>", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
