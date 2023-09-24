@@ -33,11 +33,17 @@ local plugins = {
   'L3MON4D3/LuaSnip',
   'theprimeagen/harpoon',
   'mbbill/undotree',
+{
+        'rust-lang/rust.vim',
+        ft = 'rust',
+        init = function ()
+         vim.g.rustfmt_autosave = 1
+        end
+    },
   {  
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
     },
-
   {
     'altermo/ultimate-autopair.nvim',
     event={'InsertEnter','CmdlineEnter'},
@@ -45,40 +51,33 @@ local plugins = {
     opts={
      },
     },
-
   {
     'akinsho/toggleterm.nvim',
     version = "*",
     config = true
     },
-    
   {
     'tpope/vim-commentary',
     event = "VeryLazy" 
     },
-
   { 
     'nvim-telescope/telescope.nvim',
     dependencies = {'nvim-lua/plenary.nvim'
         }
     },
-
   { 
     'sainnhe/sonokai',
     lazy = true 
     },
-
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
   },
-
   { 
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' 
         }
     },
-
   {
     "hrsh7th/nvim-cmp",
     event = 'VeryLazy',
@@ -86,18 +85,15 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
     },
   },
-
   {
     "neovim/nvim-lspconfig",
     event = { 'BufRead', 'BufNewFile' },
   },
-
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     build = ":TSUpdate",
   },
-
   {
     "folke/flash.nvim",
     event = "VeryLazy",
