@@ -12,6 +12,8 @@ require("plugins.harpoon")
 require("plugins.undotree")
 require("plugins.toggleterm")
 require("plugins.rusttools")
+require("plugins.zen")
+
 
 -- Indent Size
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces

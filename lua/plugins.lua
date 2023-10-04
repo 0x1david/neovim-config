@@ -33,13 +33,9 @@ local plugins = {
   'L3MON4D3/LuaSnip',
   'theprimeagen/harpoon',
   'mbbill/undotree',
-{
-        'rust-lang/rust.vim',
-        ft = 'rust',
-        init = function ()
-         vim.g.rustfmt_autosave = 1
-        end
-    },
+  'williamboman/mason.nvim',
+  'folke/zen-mode.nvim',
+
   {  
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
