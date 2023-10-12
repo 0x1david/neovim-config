@@ -30,12 +30,12 @@ local plugins = {
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',
   'windwp/nvim-autopairs',
+  'williamboman/mason.nvim',
   'L3MON4D3/LuaSnip',
   'theprimeagen/harpoon',
   'mbbill/undotree',
   'williamboman/mason.nvim',
   'folke/zen-mode.nvim',
-
   {  
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
@@ -115,3 +115,4 @@ require('lualine').setup {
   }
 }
 
+require("mason").setup()
