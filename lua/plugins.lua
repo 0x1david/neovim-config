@@ -24,6 +24,9 @@ vim.g.maplocalleader = ' '
 -- PLUGINS
 ----------------------------------------------------------------------------------------
 local plugins = {
+  'windwp/nvim-ts-autotag',
+  'folke/which-key.nvim',
+  'norcalli/nvim-colorizer.lua',
   'tpope/vim-fugitive',
   'tpope/vim-surround',
   'nvim-treesitter/nvim-treesitter-textobjects',
@@ -36,6 +39,8 @@ local plugins = {
   'mbbill/undotree',
   'williamboman/mason.nvim',
   'folke/zen-mode.nvim',
+
+  
   {  
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
@@ -108,6 +113,9 @@ local plugins = {
 -- Lazy Initialize
 require("lazy").setup(plugins, {})
 
+-- Autotag
+require('nvim-ts-autotag').setup()
+
 -- Lualine setup
 require('lualine').setup {
   options = {
@@ -115,4 +123,6 @@ require('lualine').setup {
   }
 }
 
+-- Mason
 require("mason").setup()
+
