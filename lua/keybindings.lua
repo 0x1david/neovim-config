@@ -29,16 +29,8 @@ map('i', '<C-j>', '<down>')
 map('i', '<C-h>', '<left>')
 map('i', '<C-l>', '<right>')
 
--- Movement in Normal Mode
-map("", "<S-e>", "<End>") -- Jump to the end of Line
-map("", "a", "^") -- Jump to the beginning of a line
-
 -- Text Editing
 map("", "r", "<C-r>") -- Redo Changes
-map("", "<S-q><S-l>", "d$") -- Delete to end of line
-map("", "<S-q>l", "d$")
-map("", "<S-q><S-h>", "d0") -- Delete to start of line
-map("", "<S-q>h", "d0")
 
 -- Add centering after half a page jumping
 map("", "<C-d>", "<C-d>zz")

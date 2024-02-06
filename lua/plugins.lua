@@ -39,9 +39,7 @@ local plugins = {
   'mbbill/undotree',
   'williamboman/mason.nvim',
   'folke/zen-mode.nvim',
-
-  
-  {  
+  {
     'simrat39/rust-tools.nvim',
     event = "VeryLazy"
     },
@@ -59,24 +57,24 @@ local plugins = {
     },
   {
     'tpope/vim-commentary',
-    event = "VeryLazy" 
+    event = "VeryLazy"
     },
-  { 
+  {
     'nvim-telescope/telescope.nvim',
     dependencies = {'nvim-lua/plenary.nvim'
         }
     },
-  { 
+  {
     'sainnhe/sonokai',
-    lazy = true 
+    lazy = true
     },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
   },
-  { 
+  {
     'lewis6991/gitsigns.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' 
+    dependencies = { 'nvim-lua/plenary.nvim'
         }
     },
   {
