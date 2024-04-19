@@ -41,7 +41,7 @@ local plugins = {
   'williamboman/mason.nvim',
   'folke/zen-mode.nvim',
   {
-    'simrat39/rust-tools.nvim',
+    'mrcjkb/rustaceanvim',
     event = "VeryLazy"
     },
   {

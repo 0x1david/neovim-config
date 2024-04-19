@@ -1,5 +1,6 @@
 -- Config
 require("plugins")
+require("neodev").setup({})
 require("keybindings")
 require("lsp")
 
@@ -11,7 +12,6 @@ require("plugins.gitsigns")
 require("plugins.harpoon")
 require("plugins.undotree")
 require("plugins.toggleterm")
-require("plugins.rusttools")
 require("plugins.zen")
 
 

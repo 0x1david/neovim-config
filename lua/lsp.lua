@@ -1,8 +1,6 @@
 -- LSP settings
-require("neodev").setup({})
 local opts = { noremap = true, silent = true }
 local nvim_lsp = require 'lspconfig'
-local util = require("lspconfig/util")
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -38,31 +36,15 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Rust
-nvim_lsp.rust_analyzer.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-        "rustup", "run", "stable", "rust-analyzer"
-    },
-    filetypes={"rust"},
-    root_dir = util.root_pattern("Cargo.toml"),
-    settings = {
-        ["rust-analyzer"] = {
-    --         assist = {
-    --             importGranularity = "module",
-    --             importPrefix = "by_self",
-    --         },
-            cargo = {
-                loadOutDirsFromCheck = true,
-                allFeatures = true
-            },
-    --         procMacro = {
-    --             enable = true
-    --         },
-        }
+-- Rust 
+
+vim.g.rustaceanvim = {
+    tools = {},
+    server = {
+        on_attach = on_attach,
+        capabilities = capabilities,
     }
-})
+}
 
 -- Svelte
 
