@@ -22,6 +22,9 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
+-- Oil keymaps
+vim.keymap.set("n", "<space>-","<CMD>Oil<CR>", { desc = "Open parent directory." })
+vim.keymap.set("n", "-", require("oil").toggle_float)
 
 -- Movement in Insert Mode
 map('i', '<C-k>', '<up>')

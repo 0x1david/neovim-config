@@ -13,6 +13,7 @@ require("plugins.harpoon")
 require("plugins.undotree")
 require("plugins.toggleterm")
 require("plugins.zen")
+require("plugins.oil")
 
 
 -- Indent Size

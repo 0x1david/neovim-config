@@ -24,6 +24,7 @@ vim.g.maplocalleader = ' '
 -- PLUGINS
 ----------------------------------------------------------------------------------------
 local plugins = {
+  'stevearc/oil.nvim',
   'folke/neodev.nvim',
   'windwp/nvim-ts-autotag',
   'folke/which-key.nvim',
