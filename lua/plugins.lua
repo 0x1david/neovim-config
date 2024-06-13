@@ -32,6 +32,7 @@ local plugins = {
   'tpope/vim-fugitive',
   'tpope/vim-surround',
   'nvim-treesitter/nvim-treesitter-textobjects',
+  'mrcjkb/haskell-tools.nvim',
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',
   'windwp/nvim-autopairs',
