@@ -6,6 +6,7 @@ require("lsp")
 
 -- Plugin configs
 require("plugins.treesitter")
+require("plugins.dap")
 require("plugins.cmp")
 require("plugins.telescope")
 require("plugins.gitsigns")
@@ -39,7 +40,7 @@ vim.o.smartcase = true
 -- Color Scheme
 vim.opt.termguicolors = true
 vim.g.sonokai_style = 'atlantis'
-vim.g.sonokai_better_performance = 1 
+vim.g.sonokai_better_performance = 1
 vim.cmd("colorscheme sonokai")
 
 -- Replace Swap Files With UndoTree

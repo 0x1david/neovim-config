@@ -42,6 +42,9 @@ local plugins = {
   'mbbill/undotree',
   'williamboman/mason.nvim',
   'folke/zen-mode.nvim',
+  'mfussenegger/nvim-dap',
+  'nvim-neotest/nvim-nio',
+  'rcarriga/nvim-dap-ui',
   {
     'mrcjkb/rustaceanvim',
     event = "VeryLazy"
