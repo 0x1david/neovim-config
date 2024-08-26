@@ -24,10 +24,12 @@ vim.g.maplocalleader = ' '
 -- PLUGINS
 ----------------------------------------------------------------------------------------
 local plugins = {
+  'stevearc/conform.nvim',
   'stevearc/oil.nvim',
   'folke/neodev.nvim',
   'windwp/nvim-ts-autotag',
   'folke/which-key.nvim',
+  'folke/neoconf.nvim',
   'norcalli/nvim-colorizer.lua',
   'tpope/vim-fugitive',
   'tpope/vim-surround',

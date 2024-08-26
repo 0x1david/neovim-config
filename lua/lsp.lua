@@ -1,5 +1,6 @@
 -- LSP settings
 local opts = { noremap = true, silent = true }
+require("neoconf").setup({})
 local nvim_lsp = require 'lspconfig'
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
