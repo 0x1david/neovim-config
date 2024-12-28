@@ -30,7 +30,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Language Servers
-local servers = { 'clangd', 'bashls', 'tailwindcss', 'html', 'pyright', 'gopls', 'lua_ls', 'hls' }
+local servers = { 'clangd', 'bashls', 'tailwindcss', 'html', 'pyright', 'gopls', 'lua_ls', 'hls', 'ocamllsp' }
+
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -48,21 +49,19 @@ vim.g.rustaceanvim = {
     }
 }
 
--- Svelte
 
-nvim_lsp.svelte.setup {
-    filetypes = { "svelte" },
+-- Ocaml
+require 'lspconfig'.ocamllsp.setup {
+    cmd = { 'ocamllsp' },
+    filetypes = { 'ocaml', 'ocaml.interface', 'ocaml.ocamllex', 'ocaml.menhir' },
+    root_dir = nvim_lsp.util.root_pattern('*.opam', 'esy.json', 'package.json', '.git'),
+    capabilities = capabilities,
     on_attach = function(client, bufnr)
-        if client.name == 'svelte' then
-            vim.api.nvim_create_autocmd("BufWritePost", {
-                pattern = { "*.js", "*.ts" },
-                callback = function(ctx)
-                    client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.file })
-                end,
-            })
-        end
+        on_attach(client, bufnr)
+        vim.cmd [[autocmd BufWritePre *.ml,*.mli lua vim.lsp.buf.format()]]
     end
 }
+
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')
