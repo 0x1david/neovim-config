@@ -57,3 +57,10 @@ vim.opt.incsearch = true
 vim.opt.wrap = false -- Linewrap
 vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
+
+
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true
+})
