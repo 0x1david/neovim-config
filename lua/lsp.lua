@@ -1,29 +1,34 @@
 -- LSP settings
-local opts = { noremap = true, silent = true }
 require("neoconf").setup({})
-local lspconfig = require('lspconfig') -- Kept only for utility functions like root_pattern
+local lspconfig = require('lspconfig')
 
-local on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl',
-        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so',
-        [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
-end
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        local opts = { buffer = ev.buf, silent = true }
+
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts)
+        vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+        vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols, opts)
+
+        vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function()
+            vim.lsp.buf.format()
+        end, { desc = 'Format current buffer with LSP' })
+    end,
+})
 
 -- nvim-cmp Autocomplete
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -34,17 +39,15 @@ local servers = { 'clangd', 'bashls', 'tailwindcss', 'html', 'pyright', 'gopls',
 
 for _, lsp in ipairs(servers) do
     vim.lsp.config(lsp, {
-        on_attach = on_attach,
         capabilities = capabilities,
     })
     vim.lsp.enable(lsp)
 end
 
--- Rust (rustaceanvim handles its own setup, leave as is)
+-- Rust
 vim.g.rustaceanvim = {
     tools = {},
     server = {
-        on_attach = on_attach,
         capabilities = capabilities,
     }
 }
@@ -55,15 +58,18 @@ vim.lsp.config('ocamllsp', {
     filetypes = { 'ocaml', 'ocaml.interface', 'ocaml.ocamllex', 'ocaml.menhir' },
     root_dir = lspconfig.util.root_pattern('*.opam', 'esy.json', 'package.json', '.git'),
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-        vim.cmd [[autocmd BufWritePre *.ml,*.mli lua vim.lsp.buf.format()]]
-    end
 })
 vim.lsp.enable('ocamllsp')
 
+-- Ocaml format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.ml", "*.mli" },
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
 -- C#
---
 require("mason").setup({
     registries = {
         "github:mason-org/mason-registry",
@@ -74,13 +80,12 @@ require("mason").setup({
 local roslyn_ok, roslyn = pcall(require, "roslyn")
 if roslyn_ok then
     roslyn.setup({
+        capabilities = capabilities,
         config = {
-            on_attach = on_attach,
             capabilities = capabilities,
         }
     })
 end
-
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')
