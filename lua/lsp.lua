@@ -1,5 +1,4 @@
 -- LSP settings
-require("neoconf").setup({})
 local lspconfig = require('lspconfig')
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -35,7 +34,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Language Servers
-local servers = { 'clangd', 'bashls', 'tailwindcss', 'html', 'pyright', 'gopls', 'lua_ls', 'hls', 'ts_ls' }
+local servers = { 'clangd', 'bashls', 'tailwindcss', 'html', 'pyright', 'gopls', 'lua_ls', 'ts_ls' }
 
 for _, lsp in ipairs(servers) do
     vim.lsp.config(lsp, {

@@ -29,12 +29,9 @@ local plugins = {
     'folke/neodev.nvim',
     'windwp/nvim-ts-autotag',
     'folke/which-key.nvim',
-    'folke/neoconf.nvim',
     'norcalli/nvim-colorizer.lua',
     'tpope/vim-fugitive',
-    'tpope/vim-surround',
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'mrcjkb/haskell-tools.nvim',
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
     'windwp/nvim-autopairs',
@@ -42,22 +39,11 @@ local plugins = {
     'L3MON4D3/LuaSnip',
     'theprimeagen/harpoon',
     'mbbill/undotree',
-    'williamboman/mason.nvim',
     'folke/zen-mode.nvim',
-    'mfussenegger/nvim-dap',
-    'nvim-neotest/nvim-nio',
-    'rcarriga/nvim-dap-ui',
     'seblyng/roslyn.nvim',
     {
         'mrcjkb/rustaceanvim',
         event = "VeryLazy"
-    },
-    {
-        'altermo/ultimate-autopair.nvim',
-        event = { 'InsertEnter', 'CmdlineEnter' },
-        branch = 'v0.6',
-        opts = {
-        },
     },
     {
         'akinsho/toggleterm.nvim',
@@ -70,8 +56,7 @@ local plugins = {
     },
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim'
-        }
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
         'sainnhe/sonokai',
@@ -80,11 +65,6 @@ local plugins = {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim'
-        }
     },
     {
         "hrsh7th/nvim-cmp",
@@ -101,27 +81,10 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         event = "VeryLazy",
         build = ":TSUpdate",
+        config = function()
+            require("plugins.treesitter")
+        end,
     },
-    {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            {
-                "s",
-                mode = { "n", "o", "x" },
-                function()
-                    require("flash").jump(
-                    )
-                end,
-                desc = "Flash"
-            },
-            -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- { "<c-f>", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-sss>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-        },
-    }
 }
 
 -- Lazy Initialize

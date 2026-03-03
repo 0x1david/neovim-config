@@ -1,51 +1,37 @@
 -- Treesitter
-require('nvim-treesitter.configs').setup {
-  highlight = {
-    enable = true, -- false will disable the whole extension.
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
-  indent = {
-    enable = true,
-  },
-  textobjects = {
+
+-- Textobjects
+require('nvim-treesitter-textobjects').setup({
     select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim.
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm.
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
+        lookahead = true,
     },
     move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
+        set_jumps = true,
     },
-  },
+})
+
+local select_ts = require('nvim-treesitter-textobjects.select')
+local move_ts = require('nvim-treesitter-textobjects.move')
+
+-- Textobject select
+local select_keymaps = {
+    ['af'] = '@function.outer',
+    ['if'] = '@function.inner',
+    ['ac'] = '@class.outer',
+    ['ic'] = '@class.inner',
 }
+for key, query in pairs(select_keymaps) do
+    vim.keymap.set({ 'x', 'o' }, key, function()
+        select_ts.select_textobject(query, 'textobjects')
+    end)
+end
+
+-- Textobject move
+vim.keymap.set({ 'n', 'x', 'o' }, ']m', function() move_ts.goto_next_start('@function.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', function() move_ts.goto_next_start('@class.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, ']M', function() move_ts.goto_next_end('@function.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, '][', function() move_ts.goto_next_end('@class.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[m', function() move_ts.goto_previous_start('@function.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[[', function() move_ts.goto_previous_start('@class.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[M', function() move_ts.goto_previous_end('@function.outer') end)
+vim.keymap.set({ 'n', 'x', 'o' }, '[]', function() move_ts.goto_previous_end('@class.outer') end)

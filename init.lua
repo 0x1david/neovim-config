@@ -5,11 +5,8 @@ require("keybindings")
 require("lsp")
 
 -- Plugin configs
-require("plugins.treesitter")
-require("plugins.dap")
 require("plugins.cmp")
 require("plugins.telescope")
--- require("plugins.gitsigns")
 require("plugins.harpoon")
 require("plugins.undotree")
 require("plugins.toggleterm")
