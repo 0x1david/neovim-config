@@ -13,6 +13,7 @@ require("plugins.toggleterm")
 require("plugins.zen")
 require("plugins.oil")
 require("plugins.conform")
+require("plugins.diffview")
 
 -- Indent Size
 vim.o.tabstop = 4      -- A TAB character looks like 4 spaces

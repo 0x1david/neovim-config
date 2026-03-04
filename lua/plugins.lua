@@ -31,6 +31,10 @@ local plugins = {
     'folke/which-key.nvim',
     'norcalli/nvim-colorizer.lua',
     'tpope/vim-fugitive',
+    {
+        'sindrets/diffview.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     'nvim-treesitter/nvim-treesitter-textobjects',
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
