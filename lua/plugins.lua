@@ -24,6 +24,7 @@ vim.g.maplocalleader = ' '
 -- PLUGINS
 ----------------------------------------------------------------------------------------
 local plugins = {
+    'nvim-tree/nvim-web-devicons',
     'stevearc/conform.nvim',
     'stevearc/oil.nvim',
     'folke/neodev.nvim',
